@@ -1,12 +1,12 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnect
 metadata:
-  name: sumer-kafka
+  name: sumer
   annotations:
     strimzi.io/use-connector-resources: "true"
 spec:
   replicas: {{ .Values.kafkaConnectReplicas }}
-  bootstrapServers: sumer-kafka-kafka-brokers.sumer:9092
+  bootstrapServers: sumer-kafka-brokers.sumer:9092
   logging:
     type: inline
     loggers:

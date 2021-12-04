@@ -1,9 +1,9 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: sumer-kafka
+  name: sumer
   labels:
-    strimzi.io/cluster: sumer-kafka
+    strimzi.io/cluster: sumer
 spec:
   kafka:
     replicas: {{ .Values.kafkaReplicas }}

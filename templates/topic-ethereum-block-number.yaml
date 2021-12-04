@@ -3,7 +3,7 @@ kind: KafkaTopic
 metadata:
   name: ethereum-block-number
   labels:
-    strimzi.io/cluster: sumer-kafka
+    strimzi.io/cluster: sumer
 spec:
   partitions: {{ .Values.topicPartitions }}
   replicas: {{ min .Values.topicReplicas .Values.kafkaReplicas }}
