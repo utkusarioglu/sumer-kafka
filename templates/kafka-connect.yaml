@@ -1,0 +1,25 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  name: sumer-kafka
+  annotations:
+    strimzi.io/use-connector-resources: "true"
+spec:
+  replicas: {{ .Values.kafkaConnectReplicas }}
+  bootstrapServers: sumer-kafka-kafka-brokers.sumer:9092
+  logging:
+    type: inline
+    loggers:
+      log4j.rootLogger: "INFO"
+  readinessProbe:
+    initialDelaySeconds: 15
+    timeoutSeconds: 5
+  livenessProbe:
+    initialDelaySeconds: 15
+    timeoutSeconds: 5
+  metricsConfig:
+    type: jmxPrometheusExporter
+    valueFrom:
+      configMapKeyRef:
+        name: kafka-connect-config-map
+        key: config-key         

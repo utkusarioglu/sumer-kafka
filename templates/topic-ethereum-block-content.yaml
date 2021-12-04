@@ -1,0 +1,9 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: ethereum-block-content
+  labels: 
+    strimzi.io/cluster: sumer-kafka
+spec:
+  partitions: {{ .Values.topicPartitions }}
+  replicas: {{ min .Values.topicReplicas .Values.kafkaReplicas }}
