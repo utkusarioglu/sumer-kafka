@@ -1,0 +1,9 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: connect-cluster-offsets
+  labels:
+    strimzi.io/cluster: sumer
+spec:
+  partitions: 1
+  replicas: 1

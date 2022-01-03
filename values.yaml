@@ -1,5 +1,5 @@
 topicPartitions: 3
-topicReplicas: 3
-kafkaReplicas: 3
-zookeeperReplicas: 3
+topicReplicas: 1
+kafkaReplicas: 1
+zookeeperReplicas: 1
 kafkaConnectReplicas: 1
