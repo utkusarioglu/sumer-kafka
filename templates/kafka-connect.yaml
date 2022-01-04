@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnect
 metadata:
-  name: postgres
+  name: metrics-storage-cluster
   annotations:
     strimzi.io/use-connector-resources: "true"
   labels:
@@ -26,22 +26,19 @@ spec:
         name: kafka-connect-metrics-config
         key: config-key         
   config:
+    group.id: metrics-storage
+    offset.storage.topic: metrics-storage-cluster-offsets
+    config.storage.topic: metrics-storage-cluster-configs
+    status.storage.topic: metrics-storage-cluster-status
     config.storage.replication.factor: 1
     offset.storage.replication.factor: 1
     status.storage.replication.factor: 1
-  # externalConfiguration:
-  #   volumes:
-  #     - name: connector-config
-  #       configMap:
-  #         name: metrics-storage-configmap
   build:
     output: # (2)
       type: docker
       image: 192.168.1.151:5000/connect-cluster:tf
-      # pushSecret: my-registry-credentials
     plugins: # (3)
       - name: debezium-postgres-connector
         artifacts:
           - type: tgz
             url: https://repo1.maven.org/maven2/io/debezium/debezium-connector-postgres/1.8.0.Final/debezium-connector-postgres-1.8.0.Final-plugin.tar.gz
-            # sha512sum: 962a12151bdf9a5a30627eebac739955a4fd95a08d373b86bdcea2b4d0c27dd6e1edd5cb548045e115e33a9e69b1b2a352bee24df035a0447cb820077af00c03
