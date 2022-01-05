@@ -36,7 +36,7 @@ spec:
   build:
     output: # (2)
       type: docker
-      image: 192.168.1.151:5000/connect-cluster:tf
+      image: 192.168.1.151:5000/metrics-storage-connect-cluster:tf
     plugins: # (3)
       - name: debezium-postgres-connector
         artifacts:
